@@ -1,0 +1,44 @@
+Physics
+	Verschillende primitives, box, sphere, capsule.
+	Voor complexere objecten heb je drie mogelijkheden
+		- Combineren van verschillende primitives 
+		- Mesh Colider deze past perfect om het object heen. Nadeel van een mesh colider = Dat het meer performance kost.
+		- Simpele mesh colider, hiervoor maak je en low poly versie van je model en gebruik je die als mesh colider
+		
+	Rigidbody Objects.
+		- Alles wat beweegt in je scene en wat collision nodig heeft moet, naast een colider, een rigidbody hebben.
+		- Zonder rigidbody blijft je object zweven in de scene
+		- Met een rigidbody is er een heleboel meer mogelijk. Je object valt nu door middel van zwaartekracht
+		- Mass, hoe zwaar je object is
+		- Drag, denk hierbij aan luchtweerstand.
+		- Angualr drag, als een object draaid wordt zorgt dit ervoor dat hij steeds iets langzamer gaat draaien
+		- Use gravity, wel of geen zwaartekracht
+		- Gravity kun je zelf aanpassen onder Project settings, Physics.
+			- Gravity werkt staat standaard ingesteld zoals het ook in de echt wereld is. Je kunt dit uiteraard zelf aanpassen.
+			- Voor een 2d puzel spel wil je b.v. dat alles naar achter valt dit kun je dan doen door de Z as aan te passen
+		- Kinematic, standaard wordt bij het begin van het spel alle statische geometry, dus alle non rigidbody objecten gecheckt door de physics engine. 
+			Deze worden vervolgens niet nog eens gecheckt ivm effiency
+			Waneer je toch een statisch object beweegt moet de physics engine ALLE statische objecten weer checken om zeker te weten of ook die niet zijn veranderd
+			Zoals je kan voorstellen is dit nogal duur ten opzicht van je framerate.
+			Om hier omheen te komen kun je je object Kinematic maken en bewegen via de transform
+			Voorbeeld hiervan is b.v. PONG.
+		Interpolate, fixed jittering
+			- Als je een object probeert te bewegen via rigidbody kun je interpolate gebruiken door het vorige frame mee te nemen in de berekening
+			- En extrapolate om te voorspellen wat het zou moeten zijn in het volgende Frame
+		Collision Detection
+			-Discrete,		Tenzij je problemen hebt moet je deze gebruiken, meest performance
+			-Continuous,	Voor snel bewegende objecten die interactie hebben met statische objecten
+			-Continuous Dynamic, Voor snel bewegende objecten die met dynamische objecten interactie hebben.
+		Constraints
+			Zeer handig om bepaalde assen en rotaties te locken.
+	
+	Voorbeeld scene,
+		Box met gravity en bal met gravity, als we nu op play drukken vallen beide opjecten op de grond.
+		Maar wat gebeurt er nu als de bal wel gravity heeft en de Box niet?
+		De box wordt wel beinvloed door de sphere en blijft dus bewegen. Omdat er geen gravity op werkt zweeft de cube langzaam weg.
+		Als we niet willen dat de cube beweegt kunnen we is kinematic aan zetten
+		Maar de sphere reageerd nog wel steeds op de rigidbody van de cube. 
+		Simpel script op cube zetten en laten bewegen. Hierdoor hebben we niet de overhead doordat hij de physics engine verteld waar hij is.
+		Cube laten vallen op een ground cube ter illustratie van rotatie locking
+		
+		
