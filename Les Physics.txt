@@ -2,7 +2,9 @@ Physics
 	Verschillende primitives, box, sphere, capsule.
 	Voor complexere objecten heb je drie mogelijkheden
 		- Combineren van verschillende primitives 
-		- Mesh Colider deze past perfect om het object heen. Nadeel van een mesh colider = Dat het meer performance kost.
+		- Mesh Colider deze past perfect om het object heen. 
+			Nadeel van een mesh colider = Dat het meer performance kost (Checkt every face)
+			nog een nadeel is dat mesh coliders niet op elkaar reageren. Ze reageren alleen als je convex hull gebruikt =< mesh 255 faces
 		- Simpele mesh colider, hiervoor maak je en low poly versie van je model en gebruik je die als mesh colider
 		
 	Rigidbody Objects.
